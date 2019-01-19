@@ -8,7 +8,7 @@ and I want to calculate the sum with Haskell:
 long | chain | of | commands | haskell 'main = interact $ show . sum . map read . lines'
 ```
 
-Currently, Short Haskell does 2 things:
+Short Haskell is a dialect that transpiles to regular Haskell. It Currently does 2 about things:
 
 
 ### Fuzzy function search
