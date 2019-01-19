@@ -54,6 +54,12 @@ cy"y\n" -- cycle "y\n"
 hello world
 
 ```haskell
-"Hello, world\n" --  "Hello, world\n"
+"Hello, world!\n" -- "Hello, world!\n"
+```
+
+Factorial
+
+```haskell
+pod.FT1.rd -- product . enumFromTo 1 . read
 ```
 

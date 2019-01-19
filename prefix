@@ -58,5 +58,5 @@ instance 'True ~ IsFun f => Run f 'True where
 
 
 main :: IO ()
-main = (\x -> getContents >>= putStrLn . run x)
-     $ id 
+main = (\x -> getContents >>= putStrLn . run x) $ id
+     
