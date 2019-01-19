@@ -17,7 +17,7 @@ For every function used, check if it is in scope. If not, perform a fuzzy search
 are in scope and choose the closest match.
 
 ```haskell
-su.ma rd.lns -> sum . map read . lines
+su.ma rd.lns -- sum . map read . lines
 ```
 
 
@@ -26,7 +26,7 @@ su.ma rd.lns -> sum . map read . lines
 If `_` is used, ask ghc to find a possible function (The types have to match).
 
 ```haskell
-su._rd._ -> sum . map read . lines
+su._rd._ -- sum . map read . lines
 ```
 
 
