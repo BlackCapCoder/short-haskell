@@ -63,3 +63,14 @@ Factorial
 pod.FT1.rd -- product . enumFromTo 1 . read
 ```
 
+
+### Other ideas
+
+`(...)` from `control-dotdotdot` can function as both `.` and `$` (and more!), but not ` `. I could redefine ` ` to mean `...` and have something else be ` `.
+
+
+Implicit `read`?
+
+
+Use djinn to generate functions. Similar to `_`, but it can create new functions rather than
+look for something in scope.
