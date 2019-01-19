@@ -1,0 +1,62 @@
+{-# LANGUAGE MultiWayIf #-}
+{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE ParallelListComp #-}
+{-# LANGUAGE PostfixOperators #-}
+{-# LANGUAGE FlexibleContexts #-}
+
+{-# LANGUAGE UndecidableInstances, FlexibleInstances, IncoherentInstances #-}
+
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE NoMonomorphismRestriction #-}
+
+import Prelude
+import Control.Monad
+import Control.Applicative
+import Control.DotDotDot
+import Data.Monoid
+import Data.Semigroup
+import Data.Function hiding (id, (.))
+import Data.List
+import Data.Ord
+import Data.Maybe
+import Data.Foldable
+import Data.Traversable
+import qualified Unsafe.Coerce as U
+
+
+infixr 8 !
+(!) :: DotDotDot f (IsFun f) => (Return f (IsFun f) -> r) -> f -> Replace f r (IsFun f)
+(!) = (...)
+
+
+class ToString a where
+  toString :: a -> String
+
+instance ToString [Char] where
+  toString = id
+
+instance Show a => ToString a where
+  toString = show
+
+instance ToString a => ToString [a] where
+  toString = unlines . fmap toString
+
+
+class b ~ IsFun f => Run f (b :: Bool) where
+  run :: f -> (String -> String)
+
+instance ('False ~ IsFun a, ToString a) => Run a 'False where
+  run x = toString . const x
+
+instance ToString b => Run (String -> b) 'True where
+  run = fmap toString
+
+instance 'True ~ IsFun f => Run f 'True where
+  run = U.unsafeCoerce
+
+
+main :: IO ()
+main = (\x -> getContents >>= putStrLn . run x)
+     $ id 
